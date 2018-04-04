@@ -1,7 +1,21 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
+<input [(ngModel)]="query" (keyup)="search()" placeholder="Search movies…" />
+
+<nav class="theaters">
+  <button
+  	*ngFor="let theater of theaters"
+  	(click)="setActiveTheater(theater)"
+  	[class.active]="theater.id === activeTheater.id"
+	>
+    {{ theater.name }}
+  </button>
 </nav>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
+
+<ul class="movies" *ngIf="searchResults.length; else noMovies">
+  <li *ngFor="let movie of searchResults">
+    <movie [movie]="movie"></movie>
+  </li>
+</ul>
+
+<ng-template #noMovies>
+	<p>No movies found :(</p>
+</ng-template>

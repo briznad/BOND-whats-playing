@@ -1,0 +1,14 @@
+<div *ngIf="movieDetails" class="movie-details">
+	<img src="{{ movieDetails.poster }}" />
+
+	<div class="movie-info">
+	  <h2 class="title">{{ movieDetails.title }}</h2>
+	  <span class="rating">({{ movieDetails.rating }})</span>
+
+	  <ul class="times">
+			<li *ngFor="let time of movie.showtimes">
+				{{ time }}
+			</li>
+	  </ul>
+	</div>
+</div>
